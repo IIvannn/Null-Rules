@@ -1,9 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://7abcug4dtmvp"]
+[gd_scene load_steps=7 format=3 uid="uid://clohmkpj8w6fx"]
 
 [ext_resource type="Script" path="res://Scripts/roomSpawner.gd" id="1_frwqk"]
-[ext_resource type="PackedScene" uid="uid://c2mm00ht74hm4" path="res://scenes/rooms/test/R1.tscn" id="2_8ph4r"]
-[ext_resource type="PackedScene" uid="uid://c31ckhx70kvhe" path="res://scenes/rooms/test/R2.tscn" id="3_xfj1h"]
-[ext_resource type="PackedScene" uid="uid://wgr7h6qvpc7q" path="res://scenes/rooms/test/R3.tscn" id="4_r7df3"]
+[ext_resource type="PackedScene" uid="uid://beldc56n4fiku" path="res://scenes/rooms/test/R1.tscn" id="2_8ph4r"]
+[ext_resource type="PackedScene" uid="uid://dx3g4642x55oh" path="res://scenes/rooms/test/R2.tscn" id="3_xfj1h"]
+[ext_resource type="PackedScene" uid="uid://dp32lfkx7lco2" path="res://scenes/rooms/test/R3.tscn" id="4_r7df3"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tc6ef"]
 albedo_color = Color(0.909178, 0.92062, 0, 1)
