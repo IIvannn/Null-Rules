@@ -1,0 +1,27 @@
+[gd_scene load_steps=7 format=3 uid="uid://7abcug4dtmvp"]
+
+[ext_resource type="Script" path="res://Scripts/roomSpawner.gd" id="1_frwqk"]
+[ext_resource type="PackedScene" uid="uid://c2mm00ht74hm4" path="res://scenes/rooms/test/R1.tscn" id="2_8ph4r"]
+[ext_resource type="PackedScene" uid="uid://c31ckhx70kvhe" path="res://scenes/rooms/test/R2.tscn" id="3_xfj1h"]
+[ext_resource type="PackedScene" uid="uid://wgr7h6qvpc7q" path="res://scenes/rooms/test/R3.tscn" id="4_r7df3"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tc6ef"]
+albedo_color = Color(0.909178, 0.92062, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_opivv"]
+
+[node name="START" type="Node3D"]
+script = ExtResource("1_frwqk")
+r_array = Array[PackedScene]([ExtResource("2_8ph4r"), ExtResource("3_xfj1h"), ExtResource("4_r7df3")])
+offset = Array[Vector3]([Vector3(0, 0, 2), Vector3(-2, 0, 0)])
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(4.7614, 0, 0, 0, 1, 0, 0, 0, 7.65862, 0, -0.500656, 0)
+material_override = SubResource("StandardMaterial3D_tc6ef")
+mesh = SubResource("BoxMesh_opivv")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-1, 0, 8.74228e-08, 2.26267e-08, 0.965926, 0.258819, -8.44439e-08, 0.258819, -0.965926, 0, 5, -5.67074)
+
+[node name="Marker3D" type="Marker3D" parent="."]
+transform = Transform3D(4.7614, 0, 0, 0, 1, 0, 0, 0, 7.65862, 0, -0.500656, 4)

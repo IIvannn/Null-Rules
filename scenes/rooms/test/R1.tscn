@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://c2mm00ht74hm4"]
+
+[ext_resource type="Material" uid="uid://b5l5kgqa42xdd" path="res://materials/room1.tres" id="1_tokx5"]
+[ext_resource type="Script" path="res://scenes/rooms/test/R1_test.gd" id="3_lrc8m"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_aji6u"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1ygr5"]
+
+[node name="R1" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = ExtResource("1_tokx5")
+mesh = SubResource("BoxMesh_aji6u")
+skeleton = NodePath("StaticBody3D/CollisionShape3D")
+script = ExtResource("3_lrc8m")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+shape = SubResource("BoxShape3D_1ygr5")
