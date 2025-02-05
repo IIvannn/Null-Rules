@@ -1,12 +1,121 @@
-[gd_scene load_steps=2 format=3 uid="uid://c5mcplnslcmk3"]
+[gd_scene load_steps=22 format=3 uid="uid://c5mcplnslcmk3"]
+
+[ext_resource type="Script" path="res://scenes/rooms/test/character.gd" id="1_5h5fb"]
+[ext_resource type="Shader" path="res://scenes/rooms/test/character.gdshader" id="2_vsvw0"]
+[ext_resource type="Texture2D" uid="uid://b85h0rt6d15v4" path="res://textures/hands/PNG_0001.png" id="3_bhnbs"]
+[ext_resource type="Texture2D" uid="uid://bilsw3iprfa8o" path="res://textures/hands/PNG_0002.png" id="4_4xkd2"]
+[ext_resource type="Texture2D" uid="uid://dqy4s7acpy0m2" path="res://textures/hands/PNG_0003.png" id="5_74nq2"]
+[ext_resource type="Texture2D" uid="uid://86c3yo62lswf" path="res://textures/hands/PNG_0004.png" id="6_4rjch"]
+[ext_resource type="Texture2D" uid="uid://mvtn7u7putig" path="res://textures/hands/PNG_0005.png" id="7_51rto"]
+[ext_resource type="Texture2D" uid="uid://cyo82jq7kfplw" path="res://textures/hands/PNG_0006.png" id="8_6mui7"]
+[ext_resource type="Texture2D" uid="uid://dpmqsncfbjyuw" path="res://textures/hands/PNG_0007.png" id="9_wvc1s"]
+[ext_resource type="Texture2D" uid="uid://c4gwo2y17bb35" path="res://textures/hands/PNG_0008.png" id="10_dejhu"]
+[ext_resource type="Texture2D" uid="uid://7faiivheyhqp" path="res://textures/hands/PNG_0009.png" id="11_7egnb"]
+[ext_resource type="Texture2D" uid="uid://g4ycki07ekhw" path="res://textures/hands/PNG_0010.png" id="12_cf242"]
+[ext_resource type="Texture2D" uid="uid://dfoo5qwqh5mjw" path="res://textures/hands/PNG_0011.png" id="13_0dx5k"]
+[ext_resource type="Texture2D" uid="uid://dce4dxphrhild" path="res://textures/hands/PNG_0012.png" id="14_y7chf"]
+[ext_resource type="Texture2D" uid="uid://st3tk6nxjt38" path="res://textures/hands/PNG_0013.png" id="15_gf42c"]
+[ext_resource type="Texture2D" uid="uid://daopmjjjcw5tq" path="res://textures/hands/PNG_0014.png" id="16_pylql"]
+[ext_resource type="Texture2D" uid="uid://b1ggl1fktf2v2" path="res://textures/hands/PNG_0015.png" id="17_u8lcc"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ryb5m"]
+shader = ExtResource("2_vsvw0")
+shader_parameter/target_resolution = Vector2(480, 270)
+shader_parameter/colors_per_channel = 16.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_qsvhj"]
+size = Vector2(2560, 1600)
+center_offset = Vector3(1280, 800, 0)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5xn65"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_bhnbs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_4xkd2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_74nq2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_4rjch")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_51rto")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_6mui7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_wvc1s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_dejhu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_7egnb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_cf242")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_0dx5k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_y7chf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_gf42c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_pylql")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_u8lcc")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_byoua"]
 
 [node name="CharacterBody3D" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+collision_layer = 2
+collision_mask = 21
+floor_stop_on_slope = false
+floor_block_on_wall = false
+floor_snap_length = 0.5
+script = ExtResource("1_5h5fb")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.483583, 0)
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Camera3D"]
+texture_filter = 1
+material = SubResource("ShaderMaterial_ryb5m")
+mesh = SubResource("QuadMesh_qsvhj")
+
+[node name="RayCast3D" type="RayCast3D" parent="Camera3D"]
+target_position = Vector3(0, 0, -10)
+collision_mask = 32
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="Camera3D"]
+transform = Transform3D(0.085, 0, 0, 0, 0.085, 0, 0, 0, 0.085, -0.34, -0.483583, -0.742)
+modulate = Color(0.730166, 0.759651, 0.999999, 1)
+sprite_frames = SubResource("SpriteFrames_5xn65")
+frame_progress = 0.788524
+speed_scale = 2.0
+
+[node name="AnimatedSprite3D2" type="AnimatedSprite3D" parent="Camera3D"]
+transform = Transform3D(-0.085, 0, 0, 0, 0.085, 0, 0, 0, 0.085, 0.34, -0.483583, -0.742)
+modulate = Color(0.839351, 0.859542, 0.999998, 1)
+sprite_frames = SubResource("SpriteFrames_5xn65")
+frame_progress = 0.328035
+speed_scale = 2.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_byoua")

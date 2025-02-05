@@ -1,0 +1,50 @@
+[gd_scene load_steps=5 format=3 uid="uid://bk8r3ftd0r3ee"]
+
+[ext_resource type="PackedScene" uid="uid://c4v3iciyl5d4a" path="res://meshes/cristals1.fbx" id="1_afxf4"]
+[ext_resource type="Material" uid="uid://d1ev3ay060yhl" path="res://materials/icecristal.tres" id="2_5jqpe"]
+[ext_resource type="Script" path="res://Scripts/cristal.gd" id="3_wn1m1"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_3yh4l"]
+radius = 1.7659
+
+[node name="cristals1" instance=ExtResource("1_afxf4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+
+[node name="Icosphere" parent="." index="0"]
+transform = Transform3D(-100, -8.74228e-06, 3.82137e-13, 0, -4.37114e-06, -100, 8.74228e-06, -100, 4.37114e-06, 0, 0, 0)
+material_override = ExtResource("2_5jqpe")
+
+[node name="Icosphere_001" parent="." index="1"]
+transform = Transform3D(-52.5474, -7.69041e-06, -24.8576, 24.8576, 4.83995e-06, -52.5474, 9.02147e-06, -58.1303, -1.08656e-06, 0.53869, 0.27218, 3.65698e-08)
+material_override = ExtResource("2_5jqpe")
+
+[node name="Icosphere_002" parent="." index="2"]
+transform = Transform3D(-38.6639, -7.50919, 42.3935, -41.9131, -6.46171, -39.3704, 9.84295, -57.0119, -1.12153, -0.0283523, 0.4026, 5.40928e-08)
+material_override = ExtResource("2_5jqpe")
+
+[node name="Icosphere_003" parent="." index="3"]
+transform = Transform3D(-65.8899, -1.51458e-06, -31.1693, 30.4696, -10.7079, -64.4108, -6.56734, -49.68, 13.8829, 0.248614, 0.172875, -0.318008)
+material_override = ExtResource("2_5jqpe")
+
+[node name="Icosphere_004" parent="." index="4"]
+transform = Transform3D(18.8327, -38.4207, 2.48457, 6.25943, 0.326327, -42.3993, 37.9887, 18.9931, 5.75446, -0.203461, 0.24568, -0.627612)
+material_override = ExtResource("2_5jqpe")
+
+[node name="Icosphere_005" parent="." index="5"]
+transform = Transform3D(-40.1884, 21.9797, 9.97844, -0.252185, 14.9863, -46.0872, -27.0714, -32.7693, -14.384, 0.126524, 0.411268, 0.494408)
+material_override = ExtResource("2_5jqpe")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." index="6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+light_color = Color(0.27451, 1, 1, 1)
+light_energy = 2.0
+shadow_enabled = true
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="7"]
+collision_layer = 33
+collision_mask = 32
+script = ExtResource("3_wn1m1")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0822752, 1.97161, -0.0756474)
+shape = SubResource("SphereShape3D_3yh4l")

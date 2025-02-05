@@ -1,0 +1,126 @@
+[gd_scene load_steps=19 format=3 uid="uid://d2c2xagttnjcs"]
+
+[ext_resource type="Script" path="res://Scripts/projectile.gd" id="1_g0g7y"]
+[ext_resource type="Texture2D" uid="uid://cpfcjmoj1q8rd" path="res://textures/part.png" id="2_618y3"]
+[ext_resource type="Texture2D" uid="uid://7li5e18yspkw" path="res://textures/star.png" id="2_ac3uu"]
+
+[sub_resource type="Curve" id="Curve_e4lwi"]
+_data = [Vector2(0.0555556, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_07tm7"]
+curve = SubResource("Curve_e4lwi")
+
+[sub_resource type="Gradient" id="Gradient_w5pwe"]
+offsets = PackedFloat32Array(0, 0.680769)
+colors = PackedColorArray(0.821696, 0.188907, 0.15083, 1, 1, 0.697691, 0.272274, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_nlord"]
+gradient = SubResource("Gradient_w5pwe")
+
+[sub_resource type="Curve" id="Curve_d6ekf"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_xy357"]
+curve = SubResource("Curve_d6ekf")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_eiw0g"]
+emission_shape = 3
+emission_box_extents = Vector3(0.03, 0.03, 0.03)
+gravity = Vector3(0, 0, 0)
+linear_accel_min = -10.0
+linear_accel_max = 10.0
+radial_accel_min = -10.0
+radial_accel_max = 10.0
+tangential_accel_min = -3.0
+tangential_accel_max = 3.0
+scale_curve = SubResource("CurveTexture_xy357")
+color_ramp = SubResource("GradientTexture1D_nlord")
+alpha_curve = SubResource("CurveTexture_07tm7")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5ocli"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("2_618y3")
+billboard_mode = 1
+billboard_keep_scale = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_fhs8c"]
+material = SubResource("StandardMaterial3D_5ocli")
+size = Vector2(0.7, 0.7)
+
+[sub_resource type="Gradient" id="Gradient_og4tf"]
+offsets = PackedFloat32Array(0, 0.680769)
+colors = PackedColorArray(0.200428, 0.507776, 0.589046, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_pjnsw"]
+gradient = SubResource("Gradient_og4tf")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_qru8i"]
+emission_shape = 3
+emission_box_extents = Vector3(0.03, 0.03, 0.03)
+gravity = Vector3(0, 0, 0)
+linear_accel_min = -10.0
+linear_accel_max = 10.0
+radial_accel_min = -10.0
+radial_accel_max = 10.0
+tangential_accel_min = -3.0
+tangential_accel_max = 3.0
+scale_curve = SubResource("CurveTexture_xy357")
+color_ramp = SubResource("GradientTexture1D_pjnsw")
+alpha_curve = SubResource("CurveTexture_07tm7")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ggy1m"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("2_ac3uu")
+billboard_mode = 1
+billboard_keep_scale = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_fekbn"]
+material = SubResource("StandardMaterial3D_ggy1m")
+size = Vector2(0.9, 0.9)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_vlc63"]
+radius = 1.56087
+
+[node name="projectile" type="Node3D"]
+script = ExtResource("1_g0g7y")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[node name="fire" type="GPUParticles3D" parent="."]
+emitting = false
+amount = 30
+lifetime = 0.4
+process_material = SubResource("ParticleProcessMaterial_eiw0g")
+draw_pass_1 = SubResource("QuadMesh_fhs8c")
+
+[node name="ice" type="GPUParticles3D" parent="."]
+emitting = false
+amount = 30
+lifetime = 0.4
+process_material = SubResource("ParticleProcessMaterial_qru8i")
+draw_pass_1 = SubResource("QuadMesh_fekbn")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+light_color = Color(1, 0.517647, 0.380392, 1)
+shadow_enabled = true
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+collision_layer = 8
+collision_mask = 5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_vlc63")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

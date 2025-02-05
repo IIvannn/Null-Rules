@@ -1,27 +1,80 @@
-[gd_scene load_steps=7 format=3 uid="uid://clohmkpj8w6fx"]
+[gd_scene load_steps=14 format=3 uid="uid://clohmkpj8w6fx"]
 
 [ext_resource type="Script" path="res://Scripts/roomSpawner.gd" id="1_frwqk"]
 [ext_resource type="PackedScene" uid="uid://beldc56n4fiku" path="res://scenes/rooms/test/R1.tscn" id="2_8ph4r"]
 [ext_resource type="PackedScene" uid="uid://dx3g4642x55oh" path="res://scenes/rooms/test/R2.tscn" id="3_xfj1h"]
 [ext_resource type="PackedScene" uid="uid://dp32lfkx7lco2" path="res://scenes/rooms/test/R3.tscn" id="4_r7df3"]
+[ext_resource type="PackedScene" uid="uid://c5mcplnslcmk3" path="res://scenes/rooms/test/character.tscn" id="5_tnl1o"]
+[ext_resource type="PackedScene" uid="uid://b4lls81qrk473" path="res://scenes/ROOM.tscn" id="7_5v0up"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tc6ef"]
-albedo_color = Color(0.909178, 0.92062, 0, 1)
+albedo_color = Color(0.341356, 0.33178, 0.133454, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_opivv"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jnrvv"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_jvbg1"]
+sky_top_color = Color(0.906736, 0.452054, 0.140999, 1)
+sky_horizon_color = Color(0.180392, 0, 0, 1)
+sky_curve = 8.07259
+ground_bottom_color = Color(0.839903, 0.215767, 0.558251, 1)
+ground_horizon_color = Color(0.180392, 0, 0, 1)
+ground_curve = 6.30346
+
+[sub_resource type="Sky" id="Sky_o67jl"]
+sky_material = SubResource("ProceduralSkyMaterial_jvbg1")
+
+[sub_resource type="Environment" id="Environment_6ts8q"]
+background_mode = 2
+sky = SubResource("Sky_o67jl")
+tonemap_mode = 3
+tonemap_exposure = 0.91
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_mx2a0"]
+vertices = PackedVector3Array(-3.53536, 11.3824, -24.0526, -3.53536, 11.3824, -12.8026, 7.71464, 11.3824, -12.8026, 7.71464, 11.3824, -24.0526, 7.21464, -0.367604, -13.3026, 7.46464, -0.367604, -17.0526, 7.21464, -0.367604, -23.8026, -3.28536, -0.367604, -23.8026, -3.28536, -0.367604, -13.3026, -1.78536, 8.3824, -13.3026, 5.96464, 8.3824, -13.3026, 5.96464, 8.3824, -14.3026, -2.03536, 8.3824, -14.5526, 0.797976, 9.6324, -13.3026, 3.38131, 9.6324, -13.3026, 3.29798, 9.6324, -14.386, 0.63131, 9.6324, -14.4693, -3.28536, 8.3824, -22.3026, -3.28536, 8.3824, -14.5526, -2.03536, 8.3824, -22.3026, -3.28536, 9.6324, -19.7193, -3.28536, 9.6324, -17.136, -2.03536, 9.6324, -17.136, -2.03536, 9.6324, -19.7193, 7.21464, 8.3824, -14.5526, 7.21464, 8.3824, -22.3026, 5.96464, 8.3824, -22.5526, 7.21464, 9.6324, -17.136, 7.21464, 9.6324, -19.7193, 3.29798, 9.6324, -22.4693, 0.63131, 9.6324, -22.386, 4.98473, 9.6324, -20.0507, 4.95991, 8.8824, -15.5359, -1.03014, 8.8824, -15.5299, 0.479812, 9.6324, -17.0738, 4.95967, 8.8824, -21.5557, 5.96464, 8.3824, -23.8026, -1.78536, 8.3824, -23.8026, 3.38131, 9.6324, -23.8026, 0.797976, 9.6324, -23.8026)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1), PackedInt32Array(5, 4, 6), PackedInt32Array(6, 4, 8), PackedInt32Array(6, 8, 7), PackedInt32Array(10, 14, 11), PackedInt32Array(11, 14, 15), PackedInt32Array(15, 14, 13), PackedInt32Array(15, 13, 16), PackedInt32Array(16, 13, 9), PackedInt32Array(16, 9, 12), PackedInt32Array(18, 21, 12), PackedInt32Array(12, 21, 22), PackedInt32Array(22, 21, 20), PackedInt32Array(22, 20, 23), PackedInt32Array(23, 20, 17), PackedInt32Array(23, 17, 19), PackedInt32Array(22, 33, 12), PackedInt32Array(12, 33, 16), PackedInt32Array(16, 34, 15), PackedInt32Array(15, 32, 11), PackedInt32Array(11, 32, 24), PackedInt32Array(24, 32, 27), PackedInt32Array(27, 31, 28), PackedInt32Array(28, 35, 25), PackedInt32Array(25, 35, 26), PackedInt32Array(26, 35, 29), PackedInt32Array(29, 31, 30), PackedInt32Array(30, 23, 19), PackedInt32Array(23, 34, 22), PackedInt32Array(22, 34, 33), PackedInt32Array(33, 34, 16), PackedInt32Array(34, 32, 15), PackedInt32Array(32, 31, 27), PackedInt32Array(31, 35, 28), PackedInt32Array(35, 31, 29), PackedInt32Array(31, 34, 30), PackedInt32Array(30, 34, 23), PackedInt32Array(34, 31, 32), PackedInt32Array(36, 26, 38), PackedInt32Array(38, 26, 29), PackedInt32Array(38, 29, 39), PackedInt32Array(39, 29, 30), PackedInt32Array(39, 30, 37), PackedInt32Array(37, 30, 19)]
+geometry_parsed_geometry_type = 1
 
 [node name="START" type="Node3D"]
 script = ExtResource("1_frwqk")
 r_array = Array[PackedScene]([ExtResource("2_8ph4r"), ExtResource("3_xfj1h"), ExtResource("4_r7df3")])
-offset = Array[Vector3]([Vector3(0, 0, 2), Vector3(-2, 0, 0)])
+offset = Array[Vector3]([Vector3(0, 0, 17.4), Vector3(-17.4, 0, 0)])
+player = NodePath("CharacterBody3D")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(4.7614, 0, 0, 0, 1, 0, 0, 0, 7.65862, 0, -0.500656, 0)
+transform = Transform3D(398.244, 0, 0, 0, 1, 0, 0, 0, 421.837, 0, -1.56932, 0)
+visible = false
 material_override = SubResource("StandardMaterial3D_tc6ef")
 mesh = SubResource("BoxMesh_opivv")
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-1, 0, 8.74228e-08, 2.26267e-08, 0.965926, 0.258819, -8.44439e-08, 0.258819, -0.965926, 0, 5, -5.67074)
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+shape = SubResource("BoxShape3D_jnrvv")
 
 [node name="Marker3D" type="Marker3D" parent="."]
 transform = Transform3D(4.7614, 0, 0, 0, 1, 0, 0, 0, 7.65862, 0, -0.500656, 4)
+
+[node name="CharacterBody3D" parent="." instance=ExtResource("5_tnl1o")]
+transform = Transform3D(-0.999632, 0, 0.0271365, 0, 1, 0, -0.0271365, 0, -0.999632, 0, 0.894328, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_6ts8q")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
+transform = Transform3D(1, 0, 0, 0, 0.581513, 0.813537, 0, -0.813537, 0.581513, 0, 0, 0)
+visible = false
+light_energy = 1.356
+shadow_enabled = true
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_mx2a0")
+
+[node name="Room1" parent="NavigationRegion3D" instance=ExtResource("7_5v0up")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.07927, -0.841218, -18.438)
+
+[node name="R2" parent="." instance=ExtResource("3_xfj1h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.0562, -1.06932, -3.63716)
+
+[editable path="R2"]
